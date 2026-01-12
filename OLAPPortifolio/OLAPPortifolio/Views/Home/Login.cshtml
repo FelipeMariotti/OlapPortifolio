@@ -1,0 +1,71 @@
+﻿@page
+@model OLAPPortifolio.Views.Home.LoginModel
+@{
+}
+<html>
+<head>
+    <title>Login Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+    <div class="container" style="width:25vw">
+        <h2>Login</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="email" class="form-control" id="email" name="email" required />
+                <label for="document">Document:</label>
+                <input type="password" class="form-control" id="password" name="password" required />
+
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn btn-primary">Login</button>
+            <a asp-controller="Home" asp-action="Register"type="submit" id="newUser" class="btn btn-primary">Register</a>
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    const userName = document.getElementById("username").textContent;
+    const password = document.getElementById("password").textContent;
+    const  newUser = document.getElementById("newUser");
+    const url = @Url.Action("/LogginSubmit","/Home");
+
+    document.getElementById("submitBtn").addEventListener("click", function(e){
+        try{
+            const response = fetch(url, {
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/text"
+                },
+                body:{
+                    user: userName,
+                    passwrd: password
+                }
+
+            });
+
+            if(response.ok)
+            {
+                const data = response.textContent();
+                console.log(data);
+            }
+        } 
+        catch(error)
+        {
+            console.error("Erro:", error);
+        }
+    }
+    });
+
+
+
+</script>

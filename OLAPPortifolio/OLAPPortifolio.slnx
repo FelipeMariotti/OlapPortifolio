@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="OLAPPortifolio.Application/OLAPPortifolio.Application.csproj" Id="31874b0f-0c46-4299-b3d0-6946de7632cc" />
+  <Project Path="OLAPPortifolio.Domain/OLAPPortifolio.Domain.csproj" Id="8fefa0b5-39e3-4daa-b1b0-adf09614e9a3" />
+  <Project Path="OLAPPortifolio.Infrastructure/OLAPPortifolio.Infrastructure.csproj" Id="131ae721-204c-4846-9d24-914f78bbfdf9" />
   <Project Path="OLAPPortifolio/OLAPPortifolio.csproj" />
 </Solution>

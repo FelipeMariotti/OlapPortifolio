@@ -1,0 +1,82 @@
+﻿@page
+@model OLAPPortifolio.Views.Home.RegisterModel
+@{
+}
+<html>
+<head>
+    <title>Login Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+    <div class="container" style="width:45vw">
+        <h2>Register</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required />
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required />
+                <label for="document">Document:</label>
+                <input class="form-control" id="document" name="document" required />
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required />
+                <label for="repeatePass">Repeat Password:</label>
+                <input type="password" class="form-control" id="repeatPass" name="repeatePass" required />
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    const userName = document.getElementById("username").textContent;
+    const email = document.getElementById("email").textContent;
+    const document = document.getElementById("document").textContent;
+    const password = document.getElementById("password").textContent;
+    const rePassword = document.getElementById("repeatPass").textContent;
+    const url = @Url.Action("/RegisterUser", "/Home");
+
+    document.getElementById("submitBtn").addEventListener("click", function(e){
+        try{
+
+            if(password === rePassword){
+                 const response = fetch(url, {
+                     method: "POST",
+                     headers:{
+                         "Content-Type":"application/text"
+                     },
+                     body:{
+                         user: userName,
+                         email: email,
+                         document: document,
+                         passwrd: password
+                     }
+
+                 });
+
+                 if(response.ok){
+                     const data = response.textContent();
+                     console.log(data);
+
+                 }
+            }
+        }
+        catch(error)
+        {
+            console.error("Erro:", error);
+        }
+    }
+    });
+
+
+
+</script>
